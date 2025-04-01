@@ -32,7 +32,7 @@ Trippify is an AI-powered travel planning app that helps users generate personal
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/trippify.git
+    git remote add origin https://github.com/DehlanDhruv/Trippify-AI-Travel-App.git
    cd trippify
    ```
 
