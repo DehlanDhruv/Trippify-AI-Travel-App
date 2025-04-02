@@ -15,7 +15,7 @@ function Home() {
             customize, and book your perfect trip effortlessly
         </h2>
 
-        <img src={homeImg} className='rounded-xl h-[250px] w-[96%] md:h-[400px] md:w-[80%]' />
+        <img src={homeImg}  loading='lazy' className='rounded-xl h-[250px] w-[96%] md:h-[400px] md:w-[80%] xl:h-[400px] lg:w-[73%]' />
         <p className='font-mono md:text-center md:mb-0 md:p-0 px-4 text-sm md:text-md '>
             Your AI-powered travel companion, crafting personalized itineraries just for you.
             Explore destinations that match your interests, budget, and style.

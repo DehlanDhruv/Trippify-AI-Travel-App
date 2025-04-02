@@ -89,7 +89,7 @@ const Header = () => {
               </div>
             :
             <div>
-                      <Button variant="outline" className='rounded-full' onClick={() =>{setOpenDialog(true)}}>Sign In</Button>
+                      <Button variant="outline" className='rounded-full cursor-pointer' onClick={() =>{setOpenDialog(true)}}>Sign In</Button>
                       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
                         <DialogContent className='bg-white flex flex-col gap-0 p-4 md:w-fit'>
                           <div className='flex gap-3 md:gap-3'>
@@ -99,7 +99,7 @@ const Header = () => {
                           <DialogHeader className='md:w-fit gap-1'>
                               <p className='font-bold text-lg text-left mt-2 md:mt-5 md:w-fit'>Sign in securely with Google</p>
                               <p className='text-gray-400 text-left md:w-fit'>Sign in to the App with Google authentication securely</p>
-                              <Button onClick={login} className='flex gap-4 items-center bg-black text-white w-full mt-2 md:mt-3'> <FcGoogle className='h-11 w-11'/> Sign in with Google</Button>
+                              <Button onClick={login} className='cursor-pointer flex gap-4 items-center bg-black text-white w-full mt-2 md:mt-3'> <FcGoogle className='h-11 w-11'/> Sign in with Google</Button>
                           </DialogHeader>
                         </DialogContent>
                       </Dialog>

@@ -50,7 +50,7 @@ const InfoSection =({trip}) => {
 
   return (
     <div className=''>
-        <img  referrerPolicy="no-referrer"  src={photoURL ? photoURL : defaultImg } key={photoURL} className='w-full h-[280px] md:h-[450px] object-cover rounded-xl'/>
+        <img  referrerPolicy="no-referrer"  loading='lazy'  src={photoURL ? photoURL : defaultImg } key={photoURL} className='w-full h-[280px] md:h-[450px] object-cover rounded-xl'/>
         <div>
             <div className='my-5 flex flex-col gap-2'>
                 <h2>

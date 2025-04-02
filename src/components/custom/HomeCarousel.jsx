@@ -67,7 +67,7 @@ export default function HomeCarousel() {
         <Slider {...carouselSettings} >
           {images.map((img, index) => (
             <div key={index} className="md:p-2 ">
-              <img src={img} alt={`Image ${index + 1}`} className={IMG_CSS} />
+              <img loading='lazy'  src={img} alt={`Image ${index + 1}`} className={IMG_CSS} />
             </div>
             ))
           }  
