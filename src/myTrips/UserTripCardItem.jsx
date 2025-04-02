@@ -27,10 +27,10 @@ const UserTripCardItem = ({ trip, setUserTrips }) => {
 
     return (
         <Link to={'/view-trip/' + trip?.id}>
-            <div className='w-[95%] md:w-[300px] relative cursor-pointer shadow-sm shadow-black hover:scale-105 transition-all bg-white rounded-lg flex flex-col gap-2 p-2'>
+            <div className='bg-white w-[100%] md:w-[300px] md:min-h-[370px] relative cursor-pointer shadow-sm shadow-black hover:scale-105 transition-all rounded-lg flex flex-col gap-2 p-2'>
                 <img 
                     src={photoURL ? photoURL : defaultImg} 
-                    className='ml-1 object-cover rounded-xl h-[190px] w-[95%]' 
+                    className='ml-1 object-cover rounded-xl h-[230px] md:h-[190px] w-[95%]' 
                 />
                 <div className='flex flex-col gap-2'>
                     <h2 className='font-bold text-md mb-1'>{trip?.userSelection?.location?.label}</h2>

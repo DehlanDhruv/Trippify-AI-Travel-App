@@ -13,6 +13,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import ViewTrip from './view-trip/tripId'
 import MyTrips from './myTrips/MyTrips'
+import Footer from './components/custom/Footer'
  
 
 const router = createBrowserRouter([
@@ -42,6 +43,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Header/>
       <Toaster/>
       <RouterProvider router={router} />
+      <Footer/>
     </GoogleOAuthProvider>
   // </StrictMode>
 );

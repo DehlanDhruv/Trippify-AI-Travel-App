@@ -72,3 +72,10 @@ export const AI_PROMPT=`generate travel plan for Location: {location} for {total
        - ticketPricing (string)
        - timeTravel (string) 
        - timeOpened `
+
+
+export const LINKEDIN = 'https://www.linkedin.com/in/dhruv-dehlan-637a1053/'
+
+export const MAIL ='https://mail.google.com/mail/?view=cm&fs=1&to=dehlandhruv@gmail.com&su=Hello&body=I%20wanted%20to%20reach%20out.'
+
+export const GITHUB='https://github.com/DehlanDhruv/Trippify-AI-Travel-App'

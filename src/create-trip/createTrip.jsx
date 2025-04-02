@@ -71,8 +71,8 @@ function CreateTrip () {
 
 
     if(!formData?.numOfDays && !formData?.location && !formData?.budget && !formData?.persons){
-      // Toast Message
       toast('Please fill all fields')
+      return
     }
 
     setLoading(true)
@@ -90,7 +90,6 @@ function CreateTrip () {
           model: "gemini-2.0-flash",
           contents: FINAL_PROMPT,
       });
-      // console.log('response from ai' , response.text , typeof(response.text) )
       setLoading(false)
       SaveAiTrip(response?.text)
   }
@@ -103,7 +102,6 @@ function CreateTrip () {
   })
 
   const getUserProfile = async (tokenInfo) => {
-    console.log('getUserProfileCalled');
     try {
       const res = await axios.get(
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
@@ -114,7 +112,6 @@ function CreateTrip () {
           },
         }
       );
-      console.log('User Profile:', res.data);
       localStorage.setItem('user', JSON.stringify(res.data));
       setOpenDialog(false);
       onGenerateTrip();
@@ -130,19 +127,18 @@ function CreateTrip () {
     console.log(formData)
   },[formData])
 
-  
 
   
   return (
-    <div className='px-5 md:px-32 lg:px-56 xl:px-34 mt-10'>
-        <h2 className='font-bold text-3xl'>
+    <div className=' md:px-32 lg:px-56 xl:px-34 mt-10'>
+        <h2 className='font-bold text-3xl px-5'>
           Tell us your travel preferences
         </h2>
-        <p className='mt-3 text-gray-500 text-lg'>
+        <p className='mt-3 text-gray-500 text-lg px-5'>
         Simply share your travel preferences, and our AI-powered trip planner will craft a personalized itinerary just for you—effortless, smart, and tailored to your adventure!
         </p>
 
-        <div className='mt-5 md:mt-15 flex flex-col gap-5 md:gap-9'>
+        <div className='mt-5 md:mt-15 flex flex-col gap-5 md:gap-9 px-5'>
           <div>
             <h2 className='text-xl my-3 font-medium'>What is your destination of choice?</h2>
             <GooglePlacesAutocomplete
@@ -162,7 +158,7 @@ function CreateTrip () {
           </div>  
         </div>
 
-        <div>
+        <div className='bg-green-100 mx-1 px-3 rounded-2xl py-4 my-5'>
           <h2 className='text-xl my-5 md:my-3 font-medium'>What is your budget?</h2>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-5 xl:gap-3 mt-5'>
             {
@@ -180,14 +176,14 @@ function CreateTrip () {
           </div>
         </div>
 
-        <div>
+        <div className='bg-violet-100 mx-1 px-3 rounded-2xl py-4 my-2' >
           <h2 className='text-xl my-3 font-medium'>Who do you plan to travel with?</h2>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-5 mt-5'>
             {
                SelectTravelerList.map((item,index)=>(
                 <div key={index} 
                 onClick={()=>handleInputChange('persons' ,item.people )}
-                className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg ${formData?.persons == item.people &&'shadow-lg border-green-800 border-5' }`}>
+                className={`cursor-pointer p-4 border rounded-lg hover:shadow-lg ${formData?.persons == item.people &&'shadow-lg border-violet-800 border-5' }`}>
                   <h2 className='text-4xl'>{item.icon}</h2>
                   <h2 className='font-bold text-lg'>{item.title}</h2>
                   <h2 className='text-lg md:text-sm text-gray-500'>{item.desc}</h2>
@@ -198,9 +194,9 @@ function CreateTrip () {
           </div>
         </div>
 
-        <div className='my-10 justify-end flex'>
-          <Button className='cursor-pointer text-white bg-black' onClick={onGenerateTrip} variant='outline'>
-            Generate Trip
+        <div className='my-10  justify-center md:justify-end flex '>
+          <Button className='cursor-pointer text-white bg-black md:w-fit w-[98%] py-7 md:text-auto text-lg ' onClick={onGenerateTrip} variant='outline'>
+            { loading ? <>Generating....</> : <>Generate Trip</>}
           </Button>
         </div>
 

@@ -37,19 +37,19 @@ const MyTrips = () => {
     }, []);
 
     return (
-        <div className="p-5 md:px-32 lg:px-56 xl:px-10 mt-10 gap-5">
-            <div className="flex justify-between">
+        <div className="p-5 md:px-32 lg:px-56 xl:px-31 mt-10 gap-5">
+            <div className="flex justify-between items-center">
                 <h2 className="text-2xl md:text-3xl font-bold">
                     My Trips: {userTrips.length}
                 </h2>
                 <Link to={'/'}>
-                    <Button className="py-1 px-3 text-xs md:text-sm md:p-3 text-white bg-black cursor-pointer animate-pulse">
+                    <Button className="py-1 px-3 text-md md:text-sm md:p-3 text-white bg-black cursor-pointer animate-pulse">
                         Create a New Trip
                     </Button>
                 </Link>
             </div>
 
-            <div className="grid grid-cols-2 mt-10 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 mt-10 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {userTrips.length > 0
                     ? userTrips.map((trip, index) => (
                           <UserTripCardItem key={index} trip={trip} setUserTrips={setUserTrips} />

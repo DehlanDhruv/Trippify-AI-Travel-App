@@ -19,8 +19,8 @@ import img13 from '../../assets/13.jpg';
 import img14 from '../../assets/14.jpg';
 
 
-export default function SimpleSlider() {
-    const IMG_CSS ='h-[300px] w-full object-fit rounded-lg'
+export default function HomeCarousel() {
+    const IMG_CSS ='h-[300px] md:h-[250px] w-full object-fit rounded-lg'
  
     const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14];
     
@@ -28,7 +28,7 @@ export default function SimpleSlider() {
     var carouselSettings = {
       dots: false,
       infinite: true,
-      speed: 500,
+      speed: 200,
       slidesToShow: 3,  // Default: Shows 3 slides on large screens
       slidesToScroll: 1,
       responsive: [
@@ -66,7 +66,7 @@ export default function SimpleSlider() {
     <div className="w-[90%] md:w-[1000px] md:px-auto h-fit">
         <Slider {...carouselSettings} >
           {images.map((img, index) => (
-            <div key={index} className="md:p-2 w-2xl">
+            <div key={index} className="md:p-2 ">
               <img src={img} alt={`Image ${index + 1}`} className={IMG_CSS} />
             </div>
             ))

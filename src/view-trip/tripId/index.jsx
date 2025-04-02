@@ -44,9 +44,10 @@ const ViewTrip = () => {
     },[tripId])
 
     return (
-        <div className=' p-5 md:p-10 md:px-20 lg:px-44 xl:px-56'>
+        <div className=' p-5 md:p-10 md:px-20 lg:px-44 xl:px-52'>
             {/* Info Section */}
             <InfoSection trip = {trip}/>
+            
             {/* Recommeded Hotels */}
             <Hotels trip={trip}/>
 

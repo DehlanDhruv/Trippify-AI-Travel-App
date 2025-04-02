@@ -29,9 +29,7 @@ import logout from '../../assets/logout.png'
 
 const Header = () => {
     const [openDialog , setOpenDialog] = useState(false)
-    const [openMenu , setOpenMenu] = useState(false)
-
-    console.log(openMenu)
+    
       const login = useGoogleLogin({
         onSuccess:(codeRes) => { console.log('login data', codeRes) ; getUserProfile(codeRes)},
         onError:(error)=> console.log(error)
@@ -48,7 +46,6 @@ const Header = () => {
               },
             }
           );
-          console.log('User Profile:', res.data);
           localStorage.setItem('user', JSON.stringify(res.data));
           setOpenDialog(false);    
     
@@ -59,13 +56,10 @@ const Header = () => {
       };
   const user = JSON.parse(localStorage.getItem('user'))
 
-  useEffect(()=>{
-    console.log(user)
-  },[])
   return (
-    <div className='justify-between py-3 px-1 md:px-5 shadow-sm flex md:justify-between items-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white '>
-      <a href='/'> <img  className ='h-8 md:h-auto md:animate-none animate-pulse ' src='/logo.svg'/> </a>
-        <h2 className=' text-white md:pl-0 pl-4 sm:text-xl font-bold md:text-2xl p-0 md:font-extrabold leading-tight text-center '>Trippify- AI enhanced trip planning </h2>
+    <div className='justify-between py-3 px-2 md:px-5 shadow-sm flex items-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white '>
+      <a href='/'> <img  className ='h-7 md:h-auto md:animate-none animate-pulse ' src='/logo.svg'/> </a>
+        <h2 className=' text-white pl-0 text-[19px] font-bold md:text-3xl p-0 md:font-extrabold leading-tight text-center '>Trippify- Plan trips with AI </h2>
 
         <div className=' hidden md:inline'>
           {
@@ -81,7 +75,7 @@ const Header = () => {
                     <img src={user?.picture} className='md:h-[35px] md:w-[35px] h-[30px] w-[30px] rounded-full cursor-pointer'/>
                   </PopoverTrigger>
                   <PopoverContent 
-                  className='w-fit cursor-pointer p-3 text-sm m-1 bg-red-500 text-white'>
+                  className='w-fit cursor-pointer p-3 text-sm m-1 bg-black text-white'>
                     <p onClick={() => {
                       googleLogout();
                       localStorage.removeItem('user');
@@ -94,22 +88,22 @@ const Header = () => {
 
               </div>
             :
-            <>
+            <div>
                       <Button variant="outline" className='rounded-full' onClick={() =>{setOpenDialog(true)}}>Sign In</Button>
                       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-                        <DialogContent className='bg-white'>
-                          <DialogTitle className='text-3xl font-bold text-gray-900'>Trip Details</DialogTitle>
-                          <DialogHeader>
-                            <DialogDescription>
-                              
-                              <img src='/logo.svg'/> </DialogDescription>
-                              <p className='font-bold text-lg mt-5'>Sign in securely with Google</p>
-                              <p className='text-gray-400'>Sign in to the App with Google authentication securely</p>
-                              <Button onClick={login} className='flex gap-4 items-center bg-black text-white w-full mt-4'> <FcGoogle className='h-11 w-11'/> Sign in with Google</Button>
+                        <DialogContent className='bg-white flex flex-col gap-0 p-4 md:w-fit'>
+                          <div className='flex gap-3 md:gap-3'>
+                            <DialogTitle><img className='h-[34px] w-[34px] md:pt-2' src='/logo.svg'/></DialogTitle>
+                            <DialogTitle className='text-3xl font-bold text-gray-900'>Trip Details</DialogTitle>
+                          </div>
+                          <DialogHeader className='md:w-fit gap-1'>
+                              <p className='font-bold text-lg text-left mt-2 md:mt-5 md:w-fit'>Sign in securely with Google</p>
+                              <p className='text-gray-400 text-left md:w-fit'>Sign in to the App with Google authentication securely</p>
+                              <Button onClick={login} className='flex gap-4 items-center bg-black text-white w-full mt-2 md:mt-3'> <FcGoogle className='h-11 w-11'/> Sign in with Google</Button>
                           </DialogHeader>
                         </DialogContent>
                       </Dialog>
-              </>
+              </div>
               
           }
         </div>
@@ -117,34 +111,31 @@ const Header = () => {
         <div className='md:hidden p-0'>
           {user ? 
           <DropdownMenu>
-  <DropdownMenuTrigger className='outline-0 flex'>
-  
-  <img onClick={()=>{setOpenMenu(!openMenu)}} src={menu} className='justify-self-end h-[23px] w-[23px] cursor-pointer'/>
-  
-  </DropdownMenuTrigger>
-  <DropdownMenuContent className='bg-black outline-0 min-w-4 w-fit '>
-    <DropdownMenuItem className='cursor-pointer text-white w-fit flex '> My Trips  <a href='/my-trips'>
-      <img src={user?.picture} className='justify-self-end rounded-full h-[23px] w-[23px] cursor-pointer'/>
-    </a></DropdownMenuItem>
-    <DropdownMenuItem 
-                  className=' text-white w-fit '
-                     onClick={() => {
-                      googleLogout();
-                      localStorage.removeItem('user');
-                      window.location.reload();
-                    }}>Logout
-                    <img src={logout} className='justify-self-end h-[23px] w-[23px] cursor-pointer ml-2'/>
-                  </DropdownMenuItem>
-    
-  </DropdownMenuContent>
-</DropdownMenu>
-
-          
-
+            <DropdownMenuTrigger className='outline-0 flex pr-1'>
+              <img src={menu} className='justify-self-end h-[23px] w-[23px] cursor-pointer'/>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-black outline-0 min-w-4 w-fit '>
+              <a href='/my-trips'>
+                <DropdownMenuItem className='cursor-pointer text-white w-full flex '>                 
+                    <p>My Trips</p>  
+                    <img src={user?.picture} className='justify-self-end rounded-full h-[23px] w-[23px] cursor-pointer'/>
+                </DropdownMenuItem>
+              </a>
+              <DropdownMenuItem 
+                className=' text-white w-fit '
+                onClick={() => {
+                googleLogout();
+                localStorage.removeItem('user');
+                window.location.reload();
+                }}>
+                  Logout
+                  <img src={logout} className='justify-self-end h-[23px] w-[23px] cursor-pointer ml-2'/>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         : 
-        <Button variant="outline" className='rounded-full' onClick={() =>{setOpenDialog(true)}}>Sign In</Button>
+        <Button variant="outline" className='rounded-full md:p-auto p-2.5' onClick={() =>{setOpenDialog(true)}}>Sign In</Button>
         }
-
         </div>
     </div>
   )
